@@ -1,0 +1,11 @@
+.cardbox {
+  display: inline-flex;
+  border: 1px solid black;
+  width: 200px;
+  height: 300px;
+}
+.card-container {
+  display: block;
+  flex-direction: row;
+  justify-content: center;
+}
