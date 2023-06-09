@@ -18,3 +18,9 @@
 #play-btn {
   width: 35%;
 }
+
+@media (max-width: 1200px) {
+  .game-container {
+    display: block;
+  }
+}
