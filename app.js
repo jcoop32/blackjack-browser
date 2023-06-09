@@ -30,46 +30,70 @@ const player = {
 let tieGame = 0;
 let exitGame = false;
 
-function startingCards() {
-  //resets total before each game starts
-  dealer.total = 0;
-  player.total = 0;
-  //generates 4 random numbers
-  for (let i = 0; i < 4; i++) {
-    const ranNum = Math.floor(Math.random() * cards.length);
-    let dealerCards = cards[ranNum];
-    let playerCards = cards[ranNum];
-    //random card selection for dealer
-    if (i < 1) {
-      console.log(`\nDealer Card #${i + 1}: ${dealerCards}\n`); //total text
-      //adds current value of card to dealers total
-      dealer.total += dealerCards;
-      //checks for ace (11)
-      if (dealerCards === 11 && dealer.total > 21) {
-        dealerCards = 1;
-      }
-    }
-    if (i === 1) {
-      console.log(`Dealer Card #2: Hidden\n`);
-      dealer.total += dealerCards;
-      //checks for ace (11)
-      if (dealerCards === 11 && dealer.total > 21) {
-        dealerCards = 1;
-      }
-    }
-    //random card selection for player
-    if (i > 1 && i < 4) {
-      console.log(`Player card #${i - 1} ${playerCards}\n`); //total text
-      //adds current value of card to players total
-      player.total += playerCards;
-      //checks for ace (11)
-      if (playerCards === 11 && player.total > 21) {
-        playerCards = 1;
-      }
-    }
-  }
-  // console.log(`Dealer Total: ${dealer.total}\n`);
-  console.log(`Player Total: ${player.total}`);
+function ranCardNum() {
+  const numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K',];
+  const ranNum = Math.floor(Math.random() * numbers.length);
+  const characters = ['C', 'D', 'H', 'S'];
+  const ranChar = Math.floor(Math.random() * characters.length);
+  const numbersD = ['A','2','3','4','5','6','7','8','9','10','J','Q','K',];
+  const ranNumD = Math.floor(Math.random() * numbers.length);
+  const charactersD = ['C', 'D', 'H', 'S'];
+  const ranCharD = Math.floor(Math.random() * characters.length);
+  const numbers2 = ['A','2','3','4','5','6','7','8','9','10','J','Q','K',];
+  const ranNum2 = Math.floor(Math.random() * numbers.length);
+  const characters2 = ['C', 'D', 'H', 'S'];
+  const ranChar2 = Math.floor(Math.random() * characters.length);
+  // console.log(numbers[ranNum]);
+  $('#dealer-card-1').attr(
+    'src',
+    'cards/' + numbersD[ranNumD] + charactersD[ranCharD] + '.jpg'
+  );
+  $('#player-card-1').attr(
+    'src',
+    'cards/' + numbers[ranNum] + characters[ranChar] + '.jpg'
+  );
+  $('#player-card-2').attr(
+    'src',
+    'cards/' + numbers2[ranNum2] + characters2[ranChar2] + '.jpg'
+  );
+  let playerCard1 = numbers[ranNum]
+  let playerCard2 = numbers2[ranNum2]
+  console.log('player card 1: ' + numbers[ranNum])
+  console.log('player card 2: ' + numbers2[ranNum2])
+  switch (playerCard1){
+   case 'K':
+     playerCard1 = 10;
+     break
+   case 'J':
+     playerCard1 = 10;
+     break
+   case 'Q':
+     playerCard1 = 10;
+     break
+     case 'A':
+      playerCard1 = 11;
+       break
+     }
+  switch (playerCard2){
+   case 'K':
+     playerCard2 = 10;
+     break
+   case 'Q':
+     playerCard2 = 10;
+     break
+   case 'J':
+     playerCard2 = 10;
+     break
+     case 'A':
+      playerCard2 = 11;
+       break
+     }
+  let playerTotal =  parseInt(playerCard1) + parseInt(playerCard2);
+  console.log('player card 1 after: ' + playerCard1)
+  console.log('player card 2 after: ' + playerCard2)
+  $('#player-total').text(`Total: ${playerTotal}`)
 }
 
-$(() => {});
+$(() => {
+  $('#play-btn').on('click', ranCardNum);
+});
