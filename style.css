@@ -1,6 +1,5 @@
 .cardbox {
   display: inline-flex;
-  border: 1px solid black;
   border-radius: 10px;
   width: 225px;
   height: 325px;
@@ -18,7 +17,9 @@
 #play-btn {
   width: 35%;
 }
-
+.cards {
+  border-radius: 10px;
+}
 @media (max-width: 1200px) {
   .game-container {
     display: block;
