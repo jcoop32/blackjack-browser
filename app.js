@@ -36,6 +36,24 @@ function randomCardSuit() {
   return suit;
 }
 
+function convertString(card){
+  switch (card){
+    case 'K':
+      card = 10;
+      break
+    case 'Q':
+      card = 10;
+      break
+    case 'J':
+      card = 10;
+      break
+    case 'A':
+      card = 11;
+      break
+  }
+  return card
+}
+
 //generates random card
 function dealCards() {
   //resets totals for dealer and player
@@ -85,14 +103,14 @@ function dealCards() {
       dealer2ndCardNum = 11;
       break;
   }
-
+ 
+  //adds dealer total
   dealer.total = parseInt(dealer1stCardNum) + parseInt(dealer2ndCardNum);
-
   $('#dealer-total').text(`Total: ${dealer.total}`);
 
   //player total calc
-  console.log('player card 1: ' + player1stCardNum);
-  console.log('player card 2: ' + player2ndCardNum);
+  // console.log('player card 1: ' + player1stCardNum);
+  // console.log('player card 2: ' + player2ndCardNum);
   //converting string to int
   switch (player1stCardNum) {
     case 'K':
@@ -149,7 +167,7 @@ function dealersTurn() {
 function hitMeDealer() {
   let dealerHitCardNum = randomCardNumber();
   let dealerHitCardSuit = randomCardSuit();
-  $('#player-card-1').attr('src','cards/' + dealerHitCardNum + dealerHitCardSuit + '.jpg');
+  $('#dealer-card-1').attr('src','cards/' + dealerHitCardNum + dealerHitCardSuit + '.jpg');
   switch (dealerHitCardNum) {
     case 'K':
       dealerHitCardNum = 10;
