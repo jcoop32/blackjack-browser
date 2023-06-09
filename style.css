@@ -17,6 +17,9 @@
 #play-btn {
   width: 35%;
 }
+.removeCard{
+  display: none;
+}
 .cards {
   border-radius: 10px;
 }
