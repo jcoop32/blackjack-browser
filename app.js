@@ -10,12 +10,6 @@ game flow:
 
  */
 
-const cards = [
-  11, 11, 11, 11, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7,
-  7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
-  10, 10, 10, 10, 10,
-];
-
 //objects for dealer and player
 const dealer = {
   total: 0,
@@ -27,9 +21,7 @@ const player = {
   gamesWon: 0,
 };
 
-let tieGame = 0;
-let exitGame = false;
-
+//generates card number for image
 function randomCardNumber() {
   const numbers = [
     'A',
@@ -50,6 +42,7 @@ function randomCardNumber() {
   let cardNum = numbers[ranNum];
   return cardNum;
 }
+//generates card suit for image
 function randomCardSuit() {
   const characters = ['C', 'D', 'H', 'S'];
   const ranChar = Math.floor(Math.random() * characters.length);
@@ -57,30 +50,32 @@ function randomCardSuit() {
   return suit;
 }
 
-//global so can be called at stand()
-let dealer2ndCardNum = randomCardNumber();
-let dealer2ndCardSuit = randomCardSuit();
-
 //generates random card
 function dealCards() {
+  //resets totals for dealer and player
   player.total = 0;
   dealer.total = 0;
+
   let dealer1stCardNum = randomCardNumber();
   let dealer1stCardSuit = randomCardSuit();
+  let dealer2ndCardNum = randomCardNumber();
+  let dealer2ndCardSuit = randomCardSuit();
   let player1stCardNum = randomCardNumber();
   let player1stCardSuit = randomCardSuit();
   let player2ndCardNum = randomCardNumber();
   let player2ndCardSuit = randomCardSuit();
 
+  //resets total color
   $('#player-total').css('color', 'black');
   //changes img based on ranNum and ranChar
   $('#dealer-card-1').attr(
     'src',
     'cards/' + dealer1stCardNum + dealer1stCardSuit + '.jpg'
   );
-  console.log(`char: ${dealer1stCardNum + dealer1stCardSuit}`);
-
-  console.log(`char: ${dealer2ndCardNum + dealer2ndCardSuit}`);
+  $('#dealer-card-2').attr(
+    'src',
+    'cards/' + dealer2ndCardNum + dealer2ndCardSuit + '.jpg'
+  );
 
   $('#player-card-1').attr(
     'src',
@@ -120,7 +115,7 @@ function dealCards() {
       dealer2ndCardNum = 11;
       break;
   }
-  // convertFaceCards(dealer1stCardNum)
+
   dealer.total = parseInt(dealer1stCardNum) + parseInt(dealer2ndCardNum);
 
   $('#dealer-total').text(`Total: ${dealer.total}`);
@@ -157,13 +152,54 @@ function dealCards() {
       player2ndCardNum = 11;
       break;
   }
+
   //adding number together and parsing strings that arent face cards
   player.total = parseInt(player1stCardNum) + parseInt(player2ndCardNum);
-  console.log('player card 1 after: ' + player1stCardNum);
-  console.log('player card 2 after: ' + player2ndCardNum);
   //changing total text
   $('#player-total').text(`Total: ${player.total}`);
   // $('#play-btn').hide();
+}
+
+function dealersTurn() {
+  while (true) {
+    if (player.total > 21) {
+      break;
+    }
+    if (dealer.total <= 16) {
+      hitMeDealer();
+      // console.log(`Dealer total after hit: ${dealer.total}`);
+    } else {
+      false;
+      break;
+    }
+  }
+}
+
+function hitMeDealer() {
+  let dealerHitCardNum = randomCardNumber();
+  let dealerHitCardSuit = randomCardSuit();
+  $('#player-card-1').attr(
+    'src',
+    'cards/' + dealerHitCardNum + dealerHitCardSuit + '.jpg'
+  );
+  switch (dealerHitCardNum) {
+    case 'K':
+      dealerHitCardNum = 10;
+      break;
+    case 'Q':
+      dealerHitCardNum = 10;
+      break;
+    case 'J':
+      dealerHitCardNum = 10;
+      break;
+    case 'A':
+      dealerHitCardNum = 11;
+      break;
+  }
+  // player.total += dealerHitCardNum
+  $('#dealer-total').text(
+    `Total: ${(dealer.total += parseInt(dealerHitCardNum))}`
+  );
 }
 
 //function to draw another card
@@ -194,6 +230,7 @@ function hitMe() {
   );
 }
 
+//decides who winner is
 function gameLogic() {
   if (player.total < 21 && dealer.total < 21 && player.total > dealer.total) {
     $('#player-total').css('color', 'green');
@@ -221,16 +258,18 @@ function gameLogic() {
   }
 }
 
+//when user hits stand btn
 function stand() {
-  $('#dealer-card-2').attr(
-    'src',
-    'cards/' + dealer2ndCardNum + dealer2ndCardSuit + '.jpg'
-  );
+  dealersTurn();
+  //rehides btns
+  $('#play-btn').show();
   $('#hit').hide();
   $('#stand').hide();
+  //runs game logic to decide winner
   gameLogic();
 }
 
+//checks to see if user qualifies for a hit
 function hitMeCheck() {
   if (player.total < 21) {
     hitMe();
@@ -246,16 +285,18 @@ function hitMeCheck() {
 }
 
 $(() => {
+  //hides btns at start
   $('#hit').hide();
   $('#stand').hide();
   //play-btn onClick call
   $('#play-btn').on('click', function () {
+    $('#play-btn').hide();
     $('#hit').show();
     $('#stand').show();
     $('#dealer-card-2').attr('src', 'cards/backCard.png');
     dealCards();
   });
-  //
+
   $('#hit').on('click', hitMeCheck);
   $('#stand').on('click', stand);
 });
