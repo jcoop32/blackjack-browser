@@ -30,128 +30,148 @@ const player = {
 let tieGame = 0;
 let exitGame = false;
 
-//generates random card
-function ranCardNum() {
-  $('#player-total').css('color', 'black');
-  const numbersD = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-  const ranNumD = Math.floor(Math.random() * numbersD.length);
-  const charactersD = ['C', 'D', 'H', 'S'];
-  const ranCharD = Math.floor(Math.random() * charactersD.length);
-  
-  const numbers2 = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-  const ranNum2 = Math.floor(Math.random() * numbers2.length);
-  const characters2 = ['C', 'D', 'H', 'S'];
-  const ranChar2 = Math.floor(Math.random() * characters2.length);
-  
+function randomCardNumber(){
   const numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
   const ranNum = Math.floor(Math.random() * numbers.length);
+  let cardNum = numbers[ranNum]
+  return cardNum
+}
+function randomCardSuit(){
   const characters = ['C', 'D', 'H', 'S'];
   const ranChar = Math.floor(Math.random() * characters.length);
-  // console.log(numbers[ranNum]);
+  let suit = characters[ranChar]
+  return suit
+}
+
+//generates random card
+function ranCardNum() {
+  player.total = 0;
+  dealer.total = 0;
+  let dealer1stCardNum = randomCardNumber()
+  let dealer1stCardSuit = randomCardSuit()
+  let dealer2ndCardNum = randomCardNumber()
+  let dealer2ndCardSuit = randomCardSuit()
+  let player1stCardNum = randomCardNumber()
+  let player1stCardSuit = randomCardSuit()
+  let player2ndCardNum = randomCardNumber()
+  let player2ndCardSuit = randomCardSuit()
+  
+  $('#player-total').css('color', 'black');
   //changes img based on ranNum and ranChar
   $('#dealer-card-1').attr(
     'src',
-    'cards/' + numbersD[ranNumD] + charactersD[ranCharD] + '.jpg')
-    console.log(`char: ${characters[ranChar]}`
+    'cards/' + dealer1stCardNum + dealer1stCardSuit + '.jpg')
+    console.log(`char: ${dealer1stCardNum + dealer1stCardSuit}`
   );
   $('#player-card-1').attr(
     'src',
-    'cards/' + numbers[ranNum] + characters[ranChar] + '.jpg'
+    'cards/' + player1stCardNum + player1stCardSuit + '.jpg'
   );
   $('#player-card-2').attr(
     'src',
-    'cards/' + numbers2[ranNum2] + characters2[ranChar2] + '.jpg'
+    'cards/' + player2ndCardNum + player2ndCardSuit + '.jpg'
   );
 
   //dealer total calc
-  let dealerCard1 = numbersD[ranNumD]
-  switch (dealerCard1) {
+  switch (dealer1stCardNum) {
     case 'K':
-      dealerCard1 = 10;
+      dealer1stCardNum = 10;
       break;
     case 'J':
-      dealerCard1 = 10;
+      dealer1stCardNum = 10;
       break;
     case 'Q':
-      dealerCard1 = 10;
+      dealer1stCardNum = 10;
       break;
     case 'A':
-      dealerCard1 = 11;
+      dealer1stCardNum = 11;
       break;
   }
-  dealer.total += parseInt(dealerCard1);
+  switch (dealer2ndCardNum) {
+    case 'K':
+      dealer2ndCardNum = 10;
+      break;
+    case 'J':
+      dealer2ndCardNum = 10;
+      break;
+    case 'Q':
+      dealer2ndCardNum = 10;
+      break;
+    case 'A':
+      dealer2ndCardNum = 11;
+      break;
+  }
+  // convertFaceCards(dealer1stCardNum)
+  dealer.total = parseInt(dealer1stCardNum) + parseInt(dealer2ndCardNum);
+
   $('#dealer-total').text(`Total: ${dealer.total}`)
   
 
   //player total calc
-  let playerCard1 = numbers[ranNum];
-  let playerCard2 = numbers2[ranNum2];
-  console.log('player card 1: ' + numbers[ranNum]);
-  console.log('player card 2: ' + numbers2[ranNum2]);
+  console.log('player card 1: ' + player1stCardNum);
+  console.log('player card 2: ' + player2ndCardNum);
   //converting string to int
-  switch (playerCard1) {
+  switch (player1stCardNum) {
     case 'K':
-      playerCard1 = 10;
-      break;
-    case 'J':
-      playerCard1 = 10;
+      player1stCardNum = 10;
       break;
     case 'Q':
-      playerCard1 = 10;
+      player1stCardNum = 10;
+      break;
+    case 'J':
+      player1stCardNum = 10;
       break;
     case 'A':
-      playerCard1 = 11;
+      player1stCardNum = 11;
       break;
   }
-  switch (playerCard2) {
+  switch (player2ndCardNum) {
     case 'K':
-      playerCard2 = 10;
+      player2ndCardNum = 10;
       break;
     case 'Q':
-      playerCard2 = 10;
+      player2ndCardNum = 10;
       break;
     case 'J':
-      playerCard2 = 10;
+      player2ndCardNum = 10;
       break;
     case 'A':
-      playerCard2 = 11;
+      player2ndCardNum = 11;
       break;
   }
   //adding number together and parsing strings that arent face cards
-  player.total = parseInt(playerCard1) + parseInt(playerCard2);
-  console.log('player card 1 after: ' + playerCard1);
-  console.log('player card 2 after: ' + playerCard2);
+  player.total = parseInt(player1stCardNum) + parseInt(player2ndCardNum);
+  console.log('player card 1 after: ' + player1stCardNum);
+  console.log('player card 2 after: ' + player2ndCardNum);
   //changing total text
   $('#player-total').text(`Total: ${player.total}`);
   // $('#play-btn').hide();
 }
 
+//function to draw another card
 function hitMe(){
-  const numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
-  const ranNum = Math.floor(Math.random() * numbers.length);
-  const characters = ['C', 'D', 'H', 'S'];
-  const ranChar = Math.floor(Math.random() * characters.length);
+  let playerHitCardNum = randomCardNumber()
+  let playerHitCardSuit = randomCardSuit()
   $('#player-card-1').attr(
     'src',
-    'cards/' + numbers[ranNum] + characters[ranChar] + '.jpg'
+    'cards/' + playerHitCardNum + playerHitCardSuit + '.jpg'
   );
-  let playerCard = numbers[ranNum]
-  switch (playerCard) {
+  switch (playerHitCardNum) {
     case 'K':
-      playerCard = 10;
+      playerHitCardNum = 10;
       break;
     case 'Q':
-      playerCard = 10;
+      playerHitCardNum = 10;
       break;
     case 'J':
-      playerCard = 10;
+      playerHitCardNum = 10;
       break;
     case 'A':
-      playerCard = 11;
+      playerHitCardNum = 11;
       break;
   }
-  // player.total += playerCard
-  $('#player-total').text(`Total: ${player.total += parseInt(playerCard)}`);
+  // player.total += playerHitCardNum
+  $('#player-total').text(`Total: ${player.total += parseInt(playerHitCardNum)}`);
 }
 
 
@@ -196,6 +216,10 @@ $(() => {
     } 
     if (player.total > 21){
       $('#player-total').css('color', 'red');
+      stand();
+    }
+    if (player.total === 21){
+      $('#player-total').css('color', 'green');
       stand();
     }
   })
