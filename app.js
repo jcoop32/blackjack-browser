@@ -30,6 +30,7 @@ const player = {
 let tieGame = 0;
 let exitGame = false;
 
+//generates random card
 function ranCardNum() {
   const numbers = [
     'A',
@@ -86,6 +87,7 @@ function ranCardNum() {
   const characters2 = ['C', 'D', 'H', 'S'];
   const ranChar2 = Math.floor(Math.random() * characters.length);
   // console.log(numbers[ranNum]);
+  //changes img based on ranNum and ranChar
   $('#dealer-card-1').attr(
     'src',
     'cards/' + numbersD[ranNumD] + charactersD[ranCharD] + '.jpg'
@@ -98,10 +100,12 @@ function ranCardNum() {
     'src',
     'cards/' + numbers2[ranNum2] + characters2[ranChar2] + '.jpg'
   );
+  //player total calc
   let playerCard1 = numbers[ranNum];
   let playerCard2 = numbers2[ranNum2];
   console.log('player card 1: ' + numbers[ranNum]);
   console.log('player card 2: ' + numbers2[ranNum2]);
+  //converting string to int
   switch (playerCard1) {
     case 'K':
       playerCard1 = 10;
@@ -130,12 +134,15 @@ function ranCardNum() {
       playerCard2 = 11;
       break;
   }
+  //adding number together and parsing strings that arent face cards
   let playerTotal = parseInt(playerCard1) + parseInt(playerCard2);
   console.log('player card 1 after: ' + playerCard1);
   console.log('player card 2 after: ' + playerCard2);
+  //changing total text
   $('#player-total').text(`Total: ${playerTotal}`);
 }
 
 $(() => {
+  //play-btn onClick call
   $('#play-btn').on('click', ranCardNum);
 });
