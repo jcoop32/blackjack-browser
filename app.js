@@ -263,6 +263,11 @@ function hitMeCheck() {
   }
 }
 
+//opens rules modal
+function openModal(){
+  $('#modal').css('display', 'block');
+}
+
 $(() => {
   //hides btns at start
   $('#hit').hide();
@@ -279,4 +284,10 @@ $(() => {
 
   $('#hit').on('click', hitMeCheck);
   $('#stand').on('click', stand);
+
+  setTimeout(openModal, 1000)
+  $('#rules-btn').on('click', openModal)
+  $('#close-modal').on('click', function(){
+    $('#modal').css('display', 'none');
+  })
 });
