@@ -160,21 +160,22 @@ function dealCards() {
   // $('#play-btn').hide();
 }
 
+//lets dealer make move
 function dealersTurn() {
   while (true) {
     if (player.total > 21) {
       break;
     }
+    //stops once >= 17
     if (dealer.total <= 16) {
       hitMeDealer();
-      // console.log(`Dealer total after hit: ${dealer.total}`);
     } else {
-      false;
       break;
     }
   }
 }
 
+//generates new card and adds to total amount
 function hitMeDealer() {
   let dealerHitCardNum = randomCardNumber();
   let dealerHitCardSuit = randomCardSuit();
@@ -290,6 +291,7 @@ $(() => {
   $('#stand').hide();
   //play-btn onClick call
   $('#play-btn').on('click', function () {
+    $('#winner').text('');
     $('#play-btn').hide();
     $('#hit').show();
     $('#stand').show();
