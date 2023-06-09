@@ -57,14 +57,16 @@ function randomCardSuit() {
   return suit;
 }
 
+//global so can be called at stand()
+let dealer2ndCardNum = randomCardNumber();
+let dealer2ndCardSuit = randomCardSuit();
+
 //generates random card
 function dealCards() {
   player.total = 0;
   dealer.total = 0;
   let dealer1stCardNum = randomCardNumber();
   let dealer1stCardSuit = randomCardSuit();
-  let dealer2ndCardNum = randomCardNumber();
-  let dealer2ndCardSuit = randomCardSuit();
   let player1stCardNum = randomCardNumber();
   let player1stCardSuit = randomCardSuit();
   let player2ndCardNum = randomCardNumber();
@@ -77,10 +79,7 @@ function dealCards() {
     'cards/' + dealer1stCardNum + dealer1stCardSuit + '.jpg'
   );
   console.log(`char: ${dealer1stCardNum + dealer1stCardSuit}`);
-  $('#dealer-card-2').attr(
-    'src',
-    'cards/' + dealer2ndCardNum + dealer2ndCardSuit + '.jpg'
-  );
+
   console.log(`char: ${dealer2ndCardNum + dealer2ndCardSuit}`);
 
   $('#player-card-1').attr(
@@ -223,8 +222,10 @@ function gameLogic() {
 }
 
 function stand() {
-  $('#dealerBackCard').addClass('removeCard');
-  $('#dealer-card-2').removeClass();
+  $('#dealer-card-2').attr(
+    'src',
+    'cards/' + dealer2ndCardNum + dealer2ndCardSuit + '.jpg'
+  );
   $('#hit').hide();
   $('#stand').hide();
   gameLogic();
@@ -243,14 +244,15 @@ function hitMeCheck() {
     stand();
   }
 }
+
 $(() => {
-  //play-btn onClick call
   $('#hit').hide();
   $('#stand').hide();
+  //play-btn onClick call
   $('#play-btn').on('click', function () {
     $('#hit').show();
     $('#stand').show();
-    $('#dealer-card-2').attr('src', 'cards/backCard.jpg');
+    $('#dealer-card-2').attr('src', 'cards/backCard.png');
     dealCards();
   });
   //
