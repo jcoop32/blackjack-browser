@@ -32,65 +32,26 @@ let exitGame = false;
 
 //generates random card
 function ranCardNum() {
-  const numbers = [
-    'A',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    'J',
-    'Q',
-    'K',
-  ];
+  const numbersD = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+  const ranNumD = Math.floor(Math.random() * numbersD.length);
+  const charactersD = ['C', 'D', 'H', 'S'];
+  const ranCharD = Math.floor(Math.random() * charactersD.length);
+  
+  const numbers2 = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+  const ranNum2 = Math.floor(Math.random() * numbers2.length);
+  const characters2 = ['C', 'D', 'H', 'S'];
+  const ranChar2 = Math.floor(Math.random() * characters2.length);
+  
+  const numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
   const ranNum = Math.floor(Math.random() * numbers.length);
   const characters = ['C', 'D', 'H', 'S'];
   const ranChar = Math.floor(Math.random() * characters.length);
-  const numbersD = [
-    'A',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    'J',
-    'Q',
-    'K',
-  ];
-  const ranNumD = Math.floor(Math.random() * numbers.length);
-  const charactersD = ['C', 'D', 'H', 'S'];
-  const ranCharD = Math.floor(Math.random() * characters.length);
-  const numbers2 = [
-    'A',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    'J',
-    'Q',
-    'K',
-  ];
-  const ranNum2 = Math.floor(Math.random() * numbers.length);
-  const characters2 = ['C', 'D', 'H', 'S'];
-  const ranChar2 = Math.floor(Math.random() * characters.length);
   // console.log(numbers[ranNum]);
   //changes img based on ranNum and ranChar
   $('#dealer-card-1').attr(
     'src',
-    'cards/' + numbersD[ranNumD] + charactersD[ranCharD] + '.jpg'
+    'cards/' + numbersD[ranNumD] + charactersD[ranCharD] + '.jpg')
+    console.log(`char: ${characters[ranChar]}`
   );
   $('#player-card-1').attr(
     'src',
@@ -100,6 +61,8 @@ function ranCardNum() {
     'src',
     'cards/' + numbers2[ranNum2] + characters2[ranChar2] + '.jpg'
   );
+    
+  
   //player total calc
   let playerCard1 = numbers[ranNum];
   let playerCard2 = numbers2[ranNum2];
@@ -140,6 +103,7 @@ function ranCardNum() {
   console.log('player card 2 after: ' + playerCard2);
   //changing total text
   $('#player-total').text(`Total: ${playerTotal}`);
+  // $('#play-btn').hide();
 }
 
 $(() => {
