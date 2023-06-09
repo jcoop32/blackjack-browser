@@ -267,6 +267,10 @@ function hitMeCheck() {
 function openModal(){
   $('#modal').css('display', 'block');
 }
+//closes rules modal
+function closeModal(){
+  $('#modal').css('display', 'none');
+}
 
 $(() => {
   //hides btns at start
@@ -287,7 +291,5 @@ $(() => {
 
   setTimeout(openModal, 1000)
   $('#rules-btn').on('click', openModal)
-  $('#close-modal').on('click', function(){
-    $('#modal').css('display', 'none');
-  })
+  $('#close-modal').on('click', closeModal)
 });
