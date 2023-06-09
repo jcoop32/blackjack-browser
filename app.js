@@ -31,15 +31,57 @@ let tieGame = 0;
 let exitGame = false;
 
 function ranCardNum() {
-  const numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K',];
+  const numbers = [
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ];
   const ranNum = Math.floor(Math.random() * numbers.length);
   const characters = ['C', 'D', 'H', 'S'];
   const ranChar = Math.floor(Math.random() * characters.length);
-  const numbersD = ['A','2','3','4','5','6','7','8','9','10','J','Q','K',];
+  const numbersD = [
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ];
   const ranNumD = Math.floor(Math.random() * numbers.length);
   const charactersD = ['C', 'D', 'H', 'S'];
   const ranCharD = Math.floor(Math.random() * characters.length);
-  const numbers2 = ['A','2','3','4','5','6','7','8','9','10','J','Q','K',];
+  const numbers2 = [
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ];
   const ranNum2 = Math.floor(Math.random() * numbers.length);
   const characters2 = ['C', 'D', 'H', 'S'];
   const ranChar2 = Math.floor(Math.random() * characters.length);
@@ -56,42 +98,42 @@ function ranCardNum() {
     'src',
     'cards/' + numbers2[ranNum2] + characters2[ranChar2] + '.jpg'
   );
-  let playerCard1 = numbers[ranNum]
-  let playerCard2 = numbers2[ranNum2]
-  console.log('player card 1: ' + numbers[ranNum])
-  console.log('player card 2: ' + numbers2[ranNum2])
-  switch (playerCard1){
-   case 'K':
-     playerCard1 = 10;
-     break
-   case 'J':
-     playerCard1 = 10;
-     break
-   case 'Q':
-     playerCard1 = 10;
-     break
-     case 'A':
+  let playerCard1 = numbers[ranNum];
+  let playerCard2 = numbers2[ranNum2];
+  console.log('player card 1: ' + numbers[ranNum]);
+  console.log('player card 2: ' + numbers2[ranNum2]);
+  switch (playerCard1) {
+    case 'K':
+      playerCard1 = 10;
+      break;
+    case 'J':
+      playerCard1 = 10;
+      break;
+    case 'Q':
+      playerCard1 = 10;
+      break;
+    case 'A':
       playerCard1 = 11;
-       break
-     }
-  switch (playerCard2){
-   case 'K':
-     playerCard2 = 10;
-     break
-   case 'Q':
-     playerCard2 = 10;
-     break
-   case 'J':
-     playerCard2 = 10;
-     break
-     case 'A':
+      break;
+  }
+  switch (playerCard2) {
+    case 'K':
+      playerCard2 = 10;
+      break;
+    case 'Q':
+      playerCard2 = 10;
+      break;
+    case 'J':
+      playerCard2 = 10;
+      break;
+    case 'A':
       playerCard2 = 11;
-       break
-     }
-  let playerTotal =  parseInt(playerCard1) + parseInt(playerCard2);
-  console.log('player card 1 after: ' + playerCard1)
-  console.log('player card 2 after: ' + playerCard2)
-  $('#player-total').text(`Total: ${playerTotal}`)
+      break;
+  }
+  let playerTotal = parseInt(playerCard1) + parseInt(playerCard2);
+  console.log('player card 1 after: ' + playerCard1);
+  console.log('player card 2 after: ' + playerCard2);
+  $('#player-total').text(`Total: ${playerTotal}`);
 }
 
 $(() => {
