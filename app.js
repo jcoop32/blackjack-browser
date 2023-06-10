@@ -189,6 +189,7 @@ function hitMeDealer() {
   }
   // player.total += dealerHitCardNum
   $('#dealer-total').text(`Total: ${(dealer.total += parseInt(dealerHitCardNum))}`);
+  $dealerHitCards.addClass('container text-center mt-2')
   $dealerHitCards.text(`+${dealerHitCardNum}`)
 }
 
@@ -215,7 +216,7 @@ function hitMe() {
   }
   // player.total += playerHitCardNum
   $('#player-total').text(`Total: ${(player.total += parseInt(playerHitCardNum))}`);
-  
+  $playerHitCards.addClass('container text-center mt-2')
   $playerHitCards.text(`+${playerHitCardNum}`)
 }
 
@@ -293,13 +294,14 @@ $(() => {
   $('#stand').hide();
   //play-btn onClick call
   $('#play-btn').on('click', function () {
+    //resets previous hit cards
     $('#player-hit-cards').text('')
     $('#dealer-hit-cards').text('')
     $('#hit-card-container').hide();
     //switches card to flip back over
     $('#dealer-card-2').addClass('hiddenCard')
     $('#dealer-card-hidden').removeClass();
-    $('#winner').text('');
+    $('#winner').text('-----');
     $('#play-btn').hide();
     $('#hit').show();
     $('#stand').show();
