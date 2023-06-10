@@ -49,9 +49,15 @@
 #modal-footer {
   text-align: center;
 }
-.removeCard{
+#cardSwitch{
+  display: flex;
+  flex-direction: row;
+}
+.hiddenCard{
+  width: 0px;
   display: none;
 }
+
 .modal-btns {
   width: 100px;
   border: none;

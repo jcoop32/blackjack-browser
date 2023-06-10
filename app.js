@@ -239,6 +239,8 @@ function gameLogic() {
 
 //when user hits stand btn
 function stand() {
+  $('#dealer-card-hidden').addClass('hiddenCard')
+  $('#dealer-card-2').removeClass();
   $('#dealer-total').text(`Total: ${dealer.total}`);
   dealersTurn();
   //rehides btns
@@ -279,18 +281,19 @@ $(() => {
   $('#stand').hide();
   //play-btn onClick call
   $('#play-btn').on('click', function () {
+    $('#dealer-card-2').addClass('hiddenCard')
+    $('#dealer-card-hidden').removeClass();
     $('#winner').text('');
     $('#play-btn').hide();
     $('#hit').show();
     $('#stand').show();
-    $('#dealer-card-2').attr('src', 'cards/backCard.png');
     dealCards();
   });
 
   $('#hit').on('click', hitMeCheck);
   $('#stand').on('click', stand);
 
-  setTimeout(openModal, 1000)
+  // setTimeout(openModal, 1000)
   $('#rules-btn').on('click', openModal)
   $('#close-modal').on('click', closeModal)
 });

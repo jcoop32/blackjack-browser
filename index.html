@@ -44,17 +44,21 @@
       <!--dealer container-->
       <div class="container text-center card-container">
         <h1>Dealer</h1>
-        <div class="cardbox">
-          <img id="dealer-card-1" src="cards/backCard.png" class="cards" />
-        </div>
-        <div class="cardbox">
-          <img id="dealer-card-2" class="" src="cards/backCard.png" />
-        </div>
-        <div class="cardbox">
-          <img id="dealer-card-hidden" class="removeCard" src="cards/backCard.png" />
+        <div id="cardSwitch">
+          <div class="cardbox">
+            <img id="dealer-card-1" src="cards/backCard.png" class="cards" />
+          </div>
+          <div class="cardbox">
+            <img id="dealer-card-2" class="hiddenCard" src="cards/10C.jpg" />
+          </div>
+          <!--hidden card-->
+          <div class="cardbox">
+            <img id="dealer-card-hidden" src="cards/backCard.png" />
+          </div>
         </div>
         <p class="container text-center" id="dealer-total"></p>
-      </div>
+
+        </div>
       <!--player container-->
       <div class="container text-center card-container">
         <h1>Player</h1>
