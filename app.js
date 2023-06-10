@@ -56,6 +56,7 @@ function convertString(card){
 
 //generates random card
 function dealCards() {
+  $('#dealer-total').text(``);
   //resets totals for dealer and player
   player.total = 0;
   dealer.total = 0;
@@ -106,7 +107,6 @@ function dealCards() {
  
   //adds dealer total
   dealer.total = parseInt(dealer1stCardNum) + parseInt(dealer2ndCardNum);
-  $('#dealer-total').text(`Total: ${dealer.total}`);
 
   //player total calc
   // console.log('player card 1: ' + player1stCardNum);
@@ -239,6 +239,7 @@ function gameLogic() {
 
 //when user hits stand btn
 function stand() {
+  $('#dealer-total').text(`Total: ${dealer.total}`);
   dealersTurn();
   //rehides btns
   $('#play-btn').show();

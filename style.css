@@ -49,6 +49,9 @@
 #modal-footer {
   text-align: center;
 }
+.removeCard{
+  display: none;
+}
 .modal-btns {
   width: 100px;
   border: none;
