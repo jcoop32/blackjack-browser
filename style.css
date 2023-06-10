@@ -75,6 +75,7 @@
   display: flex;
   flex-direction: row;
   height: 100%;
+  margin-bottom: 5px;
 }
 .hit-cards{
   height: 200px;

@@ -313,7 +313,7 @@ $(() => {
   $('#hit').on('click', hitMeCheck);
   $('#stand').on('click', stand);
 
-  // setTimeout(openModal, 1000)
+  setTimeout(openModal, 1000)
   $('#rules-btn').on('click', openModal)
   $('#close-modal').on('click', closeModal)
 
