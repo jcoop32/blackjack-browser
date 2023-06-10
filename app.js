@@ -21,6 +21,10 @@ const player = {
   gamesWon: 0,
 };
 
+//creating p tags for cards drawn
+
+
+
 //generates card number for image
 function randomCardNumber() {
   const numbers = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
@@ -165,6 +169,7 @@ function dealersTurn() {
 
 //generates new card and adds to total amount
 function hitMeDealer() {
+  const $dealerHitCards = $('<p>').appendTo('#dealer-hit-cards')
   let dealerHitCardNum = randomCardNumber();
   let dealerHitCardSuit = randomCardSuit();
   $('#dealer-card-1').attr('src','cards/' + dealerHitCardNum + dealerHitCardSuit + '.jpg');
@@ -184,10 +189,13 @@ function hitMeDealer() {
   }
   // player.total += dealerHitCardNum
   $('#dealer-total').text(`Total: ${(dealer.total += parseInt(dealerHitCardNum))}`);
+  $dealerHitCards.text(`+${dealerHitCardNum}`)
 }
+
 
 //function to draw another card
 function hitMe() {
+  const $playerHitCards = $('<p>').appendTo('#player-hit-cards')
   let playerHitCardNum = randomCardNumber();
   let playerHitCardSuit = randomCardSuit();
   $('#player-card-1').attr('src','cards/' + playerHitCardNum + playerHitCardSuit + '.jpg');
@@ -207,6 +215,8 @@ function hitMe() {
   }
   // player.total += playerHitCardNum
   $('#player-total').text(`Total: ${(player.total += parseInt(playerHitCardNum))}`);
+  
+  $playerHitCards.text(`+${playerHitCardNum}`)
 }
 
 //decides who winner is
@@ -239,6 +249,8 @@ function gameLogic() {
 
 //when user hits stand btn
 function stand() {
+  $('#hit-card-container').show();
+  //flips dealer hidden card and hides back of card img
   $('#dealer-card-hidden').addClass('hiddenCard')
   $('#dealer-card-2').removeClass();
   $('#dealer-total').text(`Total: ${dealer.total}`);
@@ -281,6 +293,10 @@ $(() => {
   $('#stand').hide();
   //play-btn onClick call
   $('#play-btn').on('click', function () {
+    $('#player-hit-cards').text('')
+    $('#dealer-hit-cards').text('')
+    $('#hit-card-container').hide();
+    //switches card to flip back over
     $('#dealer-card-2').addClass('hiddenCard')
     $('#dealer-card-hidden').removeClass();
     $('#winner').text('');
@@ -290,10 +306,14 @@ $(() => {
     dealCards();
   });
 
+  $('#hit-card-container').hide();
+
   $('#hit').on('click', hitMeCheck);
   $('#stand').on('click', stand);
 
   // setTimeout(openModal, 1000)
   $('#rules-btn').on('click', openModal)
   $('#close-modal').on('click', closeModal)
+
+  
 });

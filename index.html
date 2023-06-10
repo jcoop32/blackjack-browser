@@ -57,7 +57,6 @@
           </div>
         </div>
         <p class="container text-center" id="dealer-total"></p>
-
         </div>
       <!--player container-->
       <div class="container text-center card-container">
@@ -75,7 +74,6 @@
         </div>
       </div>
     </div>
-    <hr />
 
     <!--result container-->
     <div class="container text-center card-container">
@@ -83,6 +81,18 @@
       <h4 id="winner"></h4>
       <button class="btn btn-primary" id="play-btn">Play</button>
     </div>
-    <hr />
+
+    <!--hit card log-->
+    <div id="hit-card-container" class="container row-cols-12">
+      <div id="dealer-hit-cards" class="hit-cards col-6">
+        <p class="container text-center">Dealer Hit Cards:</p>
+        <!--dealer hit cards created in app.js-->
+      </div>
+      <div id="player-hit-cards" class="hit-cards col-6">
+        <p class="container text-center">Player Hit Cards:</p>
+        <!--player hit cards created in app.js-->
+      </div>
+    </div>
+    
   </body>
 </html>

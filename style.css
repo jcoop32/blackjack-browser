@@ -57,7 +57,6 @@
   width: 0px;
   display: none;
 }
-
 .modal-btns {
   width: 100px;
   border: none;
@@ -71,6 +70,18 @@
   width: 100%;
   line-height: 28px;
   text-align: center;
+}
+#hit-card-container{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.hit-cards{
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 @media (max-width: 1200px) {
