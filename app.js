@@ -8,6 +8,8 @@ game flow:
 6. game results displayed
 7. user can press start and we go back to 1.
 
+
+need to optimize for smoother experience
  */
 
 //objects for dealer and player
@@ -21,8 +23,23 @@ const player = {
   gamesWon: 0,
 };
 
-//creating p tags for cards drawn
 
+// function convertFaceCard(card){
+//   console.log(parseInt(card));
+//   switch (card.toString){
+//     case 'K':
+//       return 10
+//     case 'J':
+//       return 10
+//     case 'Q':
+//       return 10
+//     case 'A':
+//       return 11
+//     default:
+//       return parseInt(card)  
+//   }
+  
+// }
 
 
 //generates card number for image
@@ -40,23 +57,6 @@ function randomCardSuit() {
   return suit;
 }
 
-function convertString(card){
-  switch (card){
-    case 'K':
-      card = 10;
-      break
-    case 'Q':
-      card = 10;
-      break
-    case 'J':
-      card = 10;
-      break
-    case 'A':
-      card = 11;
-      break
-  }
-  return card
-}
 
 //generates random card
 function dealCards() {
@@ -108,13 +108,12 @@ function dealCards() {
       dealer2ndCardNum = 11;
       break;
   }
- 
+  
+  
+  // dealer.total = convertFaceCard(dealer1stCardNum) + convertFaceCard(dealer2ndCardNum);
   //adds dealer total
   dealer.total = parseInt(dealer1stCardNum) + parseInt(dealer2ndCardNum);
 
-  //player total calc
-  // console.log('player card 1: ' + player1stCardNum);
-  // console.log('player card 2: ' + player2ndCardNum);
   //converting string to int
   switch (player1stCardNum) {
     case 'K':
